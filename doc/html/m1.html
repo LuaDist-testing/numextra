@@ -10,73 +10,81 @@
 <h4><a href="index.html">&lt;&lt; Back to the index</a></h4><h1>Module <code>matrix</code></h1><p>Functions that operate on matrices (some of then operates only in real matrices for now).</p><h2>Functions</h2>
 <table class="index_list">
 <tr>
-<td class="name"><a href="m1.html#t3">add</a></td>
+<td class="name"><a href="m1.html#t4">add</a></td>
 <td class="summary">Adds vector B to vector A inplace</td>
 </tr>
 <tr>
-<td class="name"><a href="m1.html#t4">bsx</a></td>
+<td class="name"><a href="m1.html#t5">bsx</a></td>
 <td class="summary">'Broadcast' function applier, like 'bsxfun' in octave. Calls f(A[i], B) for every row i in matrix A, where B is a vec...</td>
 </tr>
 <tr>
-<td class="name"><a href="m1.html#t5">contains</a></td>
+<td class="name"><a href="m1.html#t6">contains</a></td>
 <td class="summary">Verifies if vector X contains value val, up to a tolerance of eps</td>
 </tr>
 <tr>
-<td class="name"><a href="m1.html#t6">div</a></td>
+<td class="name"><a href="m1.html#t7">div</a></td>
 <td class="summary">Divides vector A by vector B, element-wise, inplace</td>
 </tr>
 <tr>
-<td class="name"><a href="m1.html#t7">equal</a></td>
+<td class="name"><a href="m1.html#t8">equal</a></td>
 <td class="summary">Checks if two real matrices are equal (element-wise, within eps, to handle floating point precision)</td>
 </tr>
 <tr>
-<td class="name"><a href="m1.html#t8">filter</a></td>
+<td class="name"><a href="m1.html#t9">filter</a></td>
 <td class="summary">Returns a new matrix with only the rows where cond(row_idx) is true</td>
 </tr>
 <tr>
-<td class="name"><a href="m1.html#t9">load_sep</a></td>
+<td class="name"><a href="m1.html#t10">load_sep</a></td>
 <td class="summary">Loads a matrix from a text file, where each row is in a line and each value is separated by sep</td>
 </tr>
 <tr>
-<td class="name"><a href="m1.html#t10">mul</a></td>
+<td class="name"><a href="m1.html#t11">mpow</a></td>
+<td class="summary">Returns the matrix X to the a-th power (exponentiation by squaring). 'a' must be >= 0.</td>
+</tr>
+<tr>
+<td class="name"><a href="m1.html#t12">mul</a></td>
 <td class="summary">Multiplies vector A by vector B, element-wise, inplace</td>
 </tr>
 <tr>
-<td class="name"><a href="m1.html#t11">reorder</a></td>
+<td class="name"><a href="m1.html#t13">reorder</a></td>
 <td class="summary">Returns a new matrix that is a 'reordering' of the rows of matrix X. This reordering can be arbitrary, so the new mat...</td>
 </tr>
 <tr>
-<td class="name"><a href="m1.html#t12">sub</a></td>
+<td class="name"><a href="m1.html#t14">sub</a></td>
 <td class="summary">Subtracts vector B from vector A inplace</td>
 </tr>
 <tr>
-<td class="name"><a href="m1.html#t13">unique</a></td>
+<td class="name"><a href="m1.html#t15">unique</a></td>
 <td class="summary">Returns a vector containing only the unique values of vector v. Warning: the ordering will be undefined</td>
 </tr>
 </table>
 <h2>Examples</h2>
 <table class="index_list">
 <tr>
-<td class="name"><a href="m1.html#t14">Broadcast function applier</a></td>
+<td class="name"><a href="m1.html#t16">Broadcast function applier</a></td>
 <td class="summary">Demonstrates the usage of the bsx function</td>
 </tr>
 <tr>
-<td class="name"><a href="m1.html#t15">Filter</a></td>
+<td class="name"><a href="m1.html#t17">Filter</a></td>
 <td class="summary">Filtering values from a vector with the filter function</td>
 </tr>
 <tr>
-<td class="name"><a href="m1.html#t16">Reorder</a></td>
+<td class="name"><a href="m1.html#t18">Power</a></td>
+<td class="summary">Usage of the function mpow to perform exponentiation by squaring</td>
+</tr>
+<tr>
+<td class="name"><a href="m1.html#t19">Reorder</a></td>
 <td class="summary">Using the reorder function</td>
 </tr>
 <tr>
-<td class="name"><a href="m1.html#t17">Unique</a></td>
+<td class="name"><a href="m1.html#t20">Unique</a></td>
 <td class="summary">Using the unique function</td>
 </tr>
 </table>
 <h2>Functions</h2>
 <dl class="detail">
 <hr/>
-<dt><a name="t3"></a>add</dt>
+<dt><a name="t4"></a>add</dt>
 <dd>
 Adds vector B to vector A inplace
 <h3>Parameters</h3>
@@ -85,7 +93,7 @@ Adds vector B to vector A inplace
 <li>B</li>
 </ol></dd>
 <hr/>
-<dt><a name="t4"></a>bsx</dt>
+<dt><a name="t5"></a>bsx</dt>
 <dd>
 'Broadcast' function applier, like 'bsxfun' in octave. Calls f(A[i], B) for every row i in matrix A, where B is a vector. To be used with inplace functions (one can always pass a copy of A to prevent inplace modifications)
 <h3>Parameters</h3>
@@ -98,10 +106,10 @@ Adds vector B to vector A inplace
 <li>Returns the modified matrix A</li>
 </ol><h3>See</h3>
 <ol>
-<li><a href="m1.html#t14">Broadcast function applier</a></li>
+<li><a href="m1.html#t16">Broadcast function applier</a></li>
 </ol></dd>
 <hr/>
-<dt><a name="t5"></a>contains</dt>
+<dt><a name="t6"></a>contains</dt>
 <dd>
 Verifies if vector X contains value val, up to a tolerance of eps
 <h3>Parameters</h3>
@@ -114,7 +122,7 @@ Verifies if vector X contains value val, up to a tolerance of eps
 <li>true if val is in vector X, false otherwise</li>
 </ol></dd>
 <hr/>
-<dt><a name="t6"></a>div</dt>
+<dt><a name="t7"></a>div</dt>
 <dd>
 Divides vector A by vector B, element-wise, inplace
 <h3>Parameters</h3>
@@ -123,7 +131,7 @@ Divides vector A by vector B, element-wise, inplace
 <li>B</li>
 </ol></dd>
 <hr/>
-<dt><a name="t7"></a>equal</dt>
+<dt><a name="t8"></a>equal</dt>
 <dd>
 Checks if two real matrices are equal (element-wise, within eps, to handle floating point precision)
 <h3>Parameters</h3>
@@ -136,7 +144,7 @@ Checks if two real matrices are equal (element-wise, within eps, to handle float
 <li>true if the matrices have the same elements (up to eps), false otherwise</li>
 </ol></dd>
 <hr/>
-<dt><a name="t8"></a>filter</dt>
+<dt><a name="t9"></a>filter</dt>
 <dd>
 Returns a new matrix with only the rows where cond(row_idx) is true
 <h3>Parameters</h3>
@@ -148,10 +156,10 @@ Returns a new matrix with only the rows where cond(row_idx) is true
 <li>New matrix with the filtered elements of X</li>
 </ol><h3>See</h3>
 <ol>
-<li><a href="m1.html#t15">Filter</a></li>
+<li><a href="m1.html#t17">Filter</a></li>
 </ol></dd>
 <hr/>
-<dt><a name="t9"></a>load_sep</dt>
+<dt><a name="t10"></a>load_sep</dt>
 <dd>
 Loads a matrix from a text file, where each row is in a line and each value is separated by sep
 <h3>Parameters</h3>
@@ -163,7 +171,22 @@ Loads a matrix from a text file, where each row is in a line and each value is s
 <li>Constructed matrix</li>
 </ol></dd>
 <hr/>
-<dt><a name="t10"></a>mul</dt>
+<dt><a name="t11"></a>mpow</dt>
+<dd>
+Returns the matrix X to the a-th power (exponentiation by squaring). 'a' must be >= 0.
+<h3>Parameters</h3>
+<ol>
+<li>X</li>
+<li>a</li>
+</ol><h3>Return</h3>
+<ol>
+<li>A new matrix that corresponds to X^a</li>
+</ol><h3>See</h3>
+<ol>
+<li><a href="m1.html#t18">Power</a></li>
+</ol></dd>
+<hr/>
+<dt><a name="t12"></a>mul</dt>
 <dd>
 Multiplies vector A by vector B, element-wise, inplace
 <h3>Parameters</h3>
@@ -172,7 +195,7 @@ Multiplies vector A by vector B, element-wise, inplace
 <li>B</li>
 </ol></dd>
 <hr/>
-<dt><a name="t11"></a>reorder</dt>
+<dt><a name="t13"></a>reorder</dt>
 <dd>
 Returns a new matrix that is a 'reordering' of the rows of matrix X. This reordering can be arbitrary, so the new matrix can also contain less rows or more rows than the original one. The new order, or composition, is given by the vector order. If the parameter col is true, the columns are reordered instead
 <h3>Parameters</h3>
@@ -185,10 +208,10 @@ Returns a new matrix that is a 'reordering' of the rows of matrix X. This reorde
 <li>A new matrix with the X rows (or columns) reordered</li>
 </ol><h3>See</h3>
 <ol>
-<li><a href="m1.html#t16">Reorder</a></li>
+<li><a href="m1.html#t19">Reorder</a></li>
 </ol></dd>
 <hr/>
-<dt><a name="t12"></a>sub</dt>
+<dt><a name="t14"></a>sub</dt>
 <dd>
 Subtracts vector B from vector A inplace
 <h3>Parameters</h3>
@@ -197,7 +220,7 @@ Subtracts vector B from vector A inplace
 <li>B</li>
 </ol></dd>
 <hr/>
-<dt><a name="t13"></a>unique</dt>
+<dt><a name="t15"></a>unique</dt>
 <dd>
 Returns a vector containing only the unique values of vector v. Warning: the ordering will be undefined
 <h3>Parameters</h3>
@@ -208,30 +231,29 @@ Returns a vector containing only the unique values of vector v. Warning: the ord
 <li>vector with the unique values in v (may not preserve the original order of appearance)</li>
 </ol><h3>See</h3>
 <ol>
-<li><a href="m1.html#t17">Unique</a></li>
+<li><a href="m1.html#t20">Unique</a></li>
 </ol></dd>
 </dl>
 <h2>Examples</h2>
 <dl class="detail">
 <hr/>
-<dt><a name="t14"></a>Broadcast function applier</dt>
+<dt><a name="t16"></a>Broadcast function applier</dt>
 <dd>
 Demonstrates the usage of the bsx function
 <h3>Code</h3>
 <pre class="example"><!-- Generator: GNU source-highlight 3.1.7
 by Lorenzo Bettini
 http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite --><font color="#990000">&gt;</font>  M <font color="#990000">=</font> numextra<font color="#990000">.</font>matrix
-<font color="#990000">&gt;</font>  A <font color="#990000">=</font> matrix<font color="#FF0000">{</font> <font color="#FF0000">{</font><font color="#993399">1</font><font color="#990000">,</font> <font color="#993399">2</font><font color="#FF0000">}</font><font color="#990000">,</font> <font color="#FF0000">{</font><font color="#993399">3</font><font color="#990000">,</font> <font color="#993399">4</font><font color="#FF0000">}</font><font color="#990000">,</font> <font color="#FF0000">{</font><font color="#993399">5</font><font color="#990000">,</font> <font color="#993399">6</font><font color="#FF0000">}</font> <font color="#FF0000">}</font>
+http://www.gnu.org/software/src-highlite --><font color="#990000">&gt;</font>  A <font color="#990000">=</font> matrix<font color="#FF0000">{</font> <font color="#FF0000">{</font><font color="#993399">1</font><font color="#990000">,</font> <font color="#993399">2</font><font color="#FF0000">}</font><font color="#990000">,</font> <font color="#FF0000">{</font><font color="#993399">3</font><font color="#990000">,</font> <font color="#993399">4</font><font color="#FF0000">}</font><font color="#990000">,</font> <font color="#FF0000">{</font><font color="#993399">5</font><font color="#990000">,</font> <font color="#993399">6</font><font color="#FF0000">}</font> <font color="#FF0000">}</font>
 <font color="#990000">&gt;</font>  b <font color="#990000">=</font> matrix<font color="#FF0000">{</font> <font color="#FF0000">{</font><font color="#993399">3</font><font color="#990000">,</font> <font color="#993399">3</font><font color="#FF0000">}</font> <font color="#FF0000">}</font>
-<font color="#990000">&gt;</font>  M<font color="#990000">.</font><b><font color="#000000">bsx</font></b><font color="#990000">(</font>M<font color="#990000">.</font>add<font color="#990000">,</font> A<font color="#990000">,</font> b<font color="#990000">)</font>
-<font color="#990000">&gt;</font>  <b><font color="#000000">print</font></b><font color="#990000">(</font> <b><font color="#000000">A:pretty</font></b><font color="#990000">()</font> <font color="#990000">)</font>
+<font color="#990000">&gt;</font>  matrix<font color="#990000">.</font><b><font color="#000000">bsx</font></b><font color="#990000">(</font>matrix<font color="#990000">.</font>badd<font color="#990000">,</font> A<font color="#990000">,</font> b<font color="#990000">)</font>
+<font color="#990000">&gt;</font>  <b><font color="#000000">print</font></b><font color="#990000">(</font> A <font color="#990000">)</font>
    <font color="#993399">4</font>   <font color="#993399">5</font>
    <font color="#993399">6</font>   <font color="#993399">7</font>
    <font color="#993399">8</font>   <font color="#993399">9</font>
 </pre></dd>
 <hr/>
-<dt><a name="t15"></a>Filter</dt>
+<dt><a name="t17"></a>Filter</dt>
 <dd>
 Filtering values from a vector with the filter function
 <h3>Code</h3>
@@ -239,12 +261,32 @@ Filtering values from a vector with the filter function
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --><font color="#990000">&gt;</font>  x <font color="#990000">=</font> matrix<font color="#FF0000">{</font><font color="#993399">2</font><font color="#990000">,</font><font color="#993399">1</font><font color="#990000">,</font><font color="#993399">3</font><font color="#990000">,</font><font color="#993399">5</font><font color="#990000">,</font><font color="#993399">7</font><font color="#990000">,</font><font color="#993399">6</font><font color="#990000">,</font><font color="#993399">8</font><font color="#FF0000">}</font>
-<font color="#990000">&gt;</font>  f <font color="#990000">=</font> numextra<font color="#990000">.</font>matrix<font color="#990000">.</font><b><font color="#000000">filter</font></b><font color="#990000">(</font>x<font color="#990000">,</font> <b><font color="#0000FF">function</font></b><font color="#990000">(</font>i<font color="#990000">)</font> <b><font color="#0000FF">return</font></b> x<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">%</font> <font color="#993399">2</font> <font color="#990000">==</font> <font color="#993399">0</font> <b><font color="#0000FF">end</font></b><font color="#990000">)</font>
-<font color="#990000">&gt;</font>  <b><font color="#000000">print</font></b><font color="#990000">(</font> <b><font color="#000000">f:pretty</font></b><font color="#990000">()</font> <font color="#990000">)</font>
+<font color="#990000">&gt;</font>  f <font color="#990000">=</font> <b><font color="#000000">x:filter</font></b><font color="#990000">(</font><b><font color="#0000FF">function</font></b><font color="#990000">(</font>i<font color="#990000">)</font> <b><font color="#0000FF">return</font></b> x<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">%</font> <font color="#993399">2</font> <font color="#990000">==</font> <font color="#993399">0</font> <b><font color="#0000FF">end</font></b><font color="#990000">)</font>
+<font color="#990000">&gt;</font>  <b><font color="#000000">print</font></b><font color="#990000">(</font> f <font color="#990000">)</font>
    <font color="#993399">2</font>   <font color="#993399">6</font>   <font color="#993399">8</font>
 </pre></dd>
 <hr/>
-<dt><a name="t16"></a>Reorder</dt>
+<dt><a name="t18"></a>Power</dt>
+<dd>
+Usage of the function mpow to perform exponentiation by squaring
+<h3>Code</h3>
+<pre class="example"><!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite --><font color="#990000">&gt;</font>  X <font color="#990000">=</font> matrix<font color="#FF0000">{{</font><font color="#993399">1</font><font color="#990000">,</font><font color="#993399">2</font><font color="#FF0000">}</font><font color="#990000">,</font><font color="#FF0000">{</font><font color="#993399">3</font><font color="#990000">,</font><font color="#993399">4</font><font color="#FF0000">}}</font>
+<font color="#990000">&gt;</font>  <b><font color="#000000">print</font></b><font color="#990000">(</font> <b><font color="#000000">X:mpow</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">)</font> <font color="#990000">)</font>
+   <font color="#993399">1</font>   <font color="#993399">0</font>
+   <font color="#993399">0</font>   <font color="#993399">1</font>
+<font color="#990000">&gt;</font>  <b><font color="#000000">print</font></b><font color="#990000">(</font> <b><font color="#000000">X:mpow</font></b><font color="#990000">(</font><font color="#993399">5</font><font color="#990000">)</font> <font color="#990000">)</font>
+   <font color="#993399">1069</font>   <font color="#993399">1558</font>
+   <font color="#993399">2337</font>   <font color="#993399">3406</font>
+<font color="#990000">&gt;</font>  X <font color="#990000">=</font> matrix<font color="#FF0000">{{</font><font color="#993399">0.3</font><font color="#990000">,</font><font color="#993399">0.7</font><font color="#FF0000">}</font><font color="#990000">,</font><font color="#FF0000">{</font><font color="#993399">0.6</font><font color="#990000">,</font><font color="#993399">0.4</font><font color="#FF0000">}}</font>
+<font color="#990000">&gt;</font>  <b><font color="#000000">print</font></b><font color="#990000">(</font> <b><font color="#000000">X:mpow</font></b><font color="#990000">(</font><font color="#993399">9999999</font><font color="#990000">)</font> <font color="#990000">)</font>
+   <font color="#993399">0.461538</font>   <font color="#993399">0.538462</font>
+   <font color="#993399">0.461538</font>   <font color="#993399">0.538462</font>
+</pre></dd>
+<hr/>
+<dt><a name="t19"></a>Reorder</dt>
 <dd>
 Using the reorder function
 <h3>Code</h3>
@@ -252,14 +294,14 @@ Using the reorder function
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --><font color="#990000">&gt;</font>  m <font color="#990000">=</font> matrix<font color="#FF0000">{</font> <font color="#FF0000">{</font><font color="#993399">1</font><font color="#990000">,</font><font color="#993399">2</font><font color="#FF0000">}</font><font color="#990000">,</font> <font color="#FF0000">{</font><font color="#993399">3</font><font color="#990000">,</font><font color="#993399">4</font><font color="#FF0000">}</font><font color="#990000">,</font> <font color="#FF0000">{</font><font color="#993399">5</font><font color="#990000">,</font><font color="#993399">6</font><font color="#FF0000">}</font><font color="#990000">,</font> <font color="#FF0000">{</font><font color="#993399">7</font><font color="#990000">,</font><font color="#993399">8</font><font color="#FF0000">}</font> <font color="#FF0000">}</font>
-<font color="#990000">&gt;</font>  r <font color="#990000">=</font> numextra<font color="#990000">.</font>matrix<font color="#990000">.</font><b><font color="#000000">reorder</font></b><font color="#990000">(</font>m<font color="#990000">,</font> matrix<font color="#FF0000">{</font><font color="#993399">2</font><font color="#990000">,</font><font color="#993399">2</font><font color="#990000">,</font><font color="#993399">1</font><font color="#FF0000">}</font><font color="#990000">)</font>
-<font color="#990000">&gt;</font>  <b><font color="#000000">print</font></b><font color="#990000">(</font> <b><font color="#000000">r:pretty</font></b><font color="#990000">()</font> <font color="#990000">)</font>
+<font color="#990000">&gt;</font>  r <font color="#990000">=</font> m<font color="#990000">:</font>reorder<font color="#FF0000">{</font><font color="#993399">2</font><font color="#990000">,</font><font color="#993399">2</font><font color="#990000">,</font><font color="#993399">1</font><font color="#FF0000">}</font>
+<font color="#990000">&gt;</font>  <b><font color="#000000">print</font></b><font color="#990000">(</font> r <font color="#990000">)</font>
    <font color="#993399">3</font>   <font color="#993399">4</font>
    <font color="#993399">3</font>   <font color="#993399">4</font>
    <font color="#993399">1</font>   <font color="#993399">2</font>
 </pre></dd>
 <hr/>
-<dt><a name="t17"></a>Unique</dt>
+<dt><a name="t20"></a>Unique</dt>
 <dd>
 Using the unique function
 <h3>Code</h3>
@@ -267,10 +309,10 @@ Using the unique function
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --><font color="#990000">&gt;</font>  x <font color="#990000">=</font> matrix<font color="#FF0000">{</font><font color="#993399">1</font><font color="#990000">,</font> <font color="#993399">1</font><font color="#990000">,</font> <font color="#993399">2</font><font color="#990000">,</font> <font color="#993399">1</font><font color="#990000">,</font> <font color="#993399">3</font><font color="#990000">,</font> <font color="#993399">1</font><font color="#990000">,</font> <font color="#993399">2</font><font color="#FF0000">}</font>
-<font color="#990000">&gt;</font>  u <font color="#990000">=</font> numextra<font color="#990000">.</font>matrix<font color="#990000">.</font><b><font color="#000000">unique</font></b><font color="#990000">(</font>x<font color="#990000">)</font>
-<font color="#990000">&gt;</font>  <b><font color="#000000">print</font></b><font color="#990000">(</font> <b><font color="#000000">u:pretty</font></b><font color="#990000">()</font> <font color="#990000">)</font>
+<font color="#990000">&gt;</font>  u <font color="#990000">=</font> <b><font color="#000000">x:unique</font></b><font color="#990000">()</font>
+<font color="#990000">&gt;</font>  <b><font color="#000000">print</font></b><font color="#990000">(</font> u <font color="#990000">)</font>
    <font color="#993399">1</font>   <font color="#993399">2</font>   <font color="#993399">3</font>
 </pre></dd>
 </dl>
-    <p class="footer">Generated by <code>badoc</code> in Sun Jun 23 21:58:36 2013</p>
+    <p class="footer">Generated by <code>badoc</code> in Mon Aug  5 16:42:32 2013</p>
 </body></html>

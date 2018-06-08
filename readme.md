@@ -2,10 +2,12 @@
 
 ## About
 
-Numeric Extra is a collection of (unofficial) complementary functions
-for [Numeric Lua][1]. It provides some basic statistical functions like var,
-corr, std, ..., principal component analysis and linear discriminant analysis.
-Also, this library provides some additional functions to ease matrix handling.
+Numeric Extra is a collection of complementary functions for Numeric Lua. It
+currently provides:
+1. Basic statistical functions like var, corr, std, ..., 
+   principal component analysis and linear discriminant analysis;
+2. Least squares fitting, function minimization and ODE system solver;
+3. Additional functions to ease matrix handling;
 
 As Numeric Lua, Numeric Extra is also licensed under the MIT license and
 can be freely used for academic and commercial purposes.

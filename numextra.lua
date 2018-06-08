@@ -29,9 +29,7 @@
 require('numlua')
 require('numlua.matrix')
 
-numextra = {
-    stats  = require('numextra.stats'),
-    matrix = require('numextra.matrix'),
-}
-
-return numextra
+require('numextra.matrix')
+require('numextra.stat')
+require('numextra.num')
+getmetatable(matrix(1)).__tostring = matrix.pretty

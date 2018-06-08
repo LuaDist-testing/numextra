@@ -1,6 +1,6 @@
 module(..., package.seeall)
 
-local s           = numextra.stats
+local s           = stat
 local mean, std   = s.mean , s.std
 local meanm       = s.meanm
 local corr, cov   = s.corr , s.cov

@@ -1,5 +1,5 @@
 _module{
-    name = 'stats',
+    name = 'stat',
     desc = "Statistical functions",
 }
 
@@ -43,7 +43,7 @@ _function{
     desc = "Computes the standard deviation of vector X. Normalizes with #X-ddof",
     args = {"X","ddof (default=1)"},
     ret  = {"Standard deviation of vector X"},
-    see  = {"stats:examples:Standard deviation"},
+    see  = {"stat:examples:Standard deviation"},
 }
 
 _function{
@@ -58,7 +58,7 @@ _function{
     desc = "Computes the covariance matrix (covariance between each pair of columns of matrix M). Normalizes with cols(M)-ddof",
     args = {"M","ddof (default=1)"},
     ret  = {"Covariance matrix"},
-    see  = {"stats:functions:cov"},
+    see  = {"stat:functions:cov"},
 }
 
 _function{
@@ -66,7 +66,7 @@ _function{
     desc = "Computes the correlation matrix (correlation between each pair of columns of matrix M)",
     args = {"M"},
     ret  = {"Covariance matrix"},
-    see  = {"stats:functions:corr"},
+    see  = {"stat:functions:corr"},
 }
 
 _function{
@@ -74,7 +74,7 @@ _function{
     desc = "Computes the standard score of each value in vector X in respect to itself",
     args = {"X"},
     ret  = {"Vector with the standard score (number of standard deviations from the mean) of each value in X"},
-    see  = {"stats:functions:std"},
+    see  = {"stat:functions:std"},
 }
 
 _function{
@@ -82,7 +82,7 @@ _function{
     desc = "Computes the standard score of each value in each dimension (column) of matrix M in respect to itself",
     args = {"M"},
     ret  = {"Matrix where each column has been exchanged with its 'zscore'"},
-    see  = {"stats:functions:zscore"},
+    see  = {"stat:functions:zscore"},
 }
 
 _function{
@@ -90,7 +90,7 @@ _function{
     desc = "Performs a principal component analysis on matrix M, where each column is a dimension and each row is a data 'point'",
     args = {"M"},
     ret  = {"vector s, matrix V, vector mu, where 's' is the variance contribution of each component, 'V' contains the components per se (one at each column), 'mu' is a vector with the mean of the original data. The vector s and matrix V are already ordered by their variance contributions"},
-    see  = {"stats:functions:lda", "stats:functions:zscorem"}
+    see  = {"stat:functions:lda", "stat:functions:zscorem"}
 }
 
 _function{
@@ -119,9 +119,9 @@ _example{
     desc = 'Demonstrates the computation of the standard deviation of a vector',
     code = [[
 > x = matrix{1,2,1,3,2,1}
-> print( numextra.stats.std(x) ) -- default: sample standard deviation
+> print( stat.std(x) ) -- default: sample standard deviation
 0.81649658092773
->  print( numextra.stats.std(x, 0) ) -- 'whole population' standard deviation
+>  print( stat.std(x, 0) ) -- 'whole population' standard deviation
 0.74535599249993
 ]],
 }

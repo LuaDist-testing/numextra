@@ -84,15 +84,22 @@ _function{
     see  = {"matrix:examples:Unique"}
 }
 
+_function{
+    name = 'mpow',
+    desc = "Returns the matrix X to the a-th power (exponentiation by squaring). 'a' must be >= 0.",
+    args = {"X","a"},
+    ret  = {"A new matrix that corresponds to X^a"},
+    see  = {"matrix:examples:Power"},
+}
+
 _example{
     name = 'Broadcast function applier',
     desc = 'Demonstrates the usage of the bsx function',
     code = [[
->  M = numextra.matrix
 >  A = matrix{ {1, 2}, {3, 4}, {5, 6} }
 >  b = matrix{ {3, 3} }
->  M.bsx(M.add, A, b)
->  print( A:pretty() )
+>  matrix.bsx(matrix.badd, A, b)
+>  print( A )
    4   5
    6   7
    8   9
@@ -104,8 +111,8 @@ _example{
     desc = "Using the unique function",
     code = [[
 >  x = matrix{1, 1, 2, 1, 3, 1, 2}
->  u = numextra.matrix.unique(x)
->  print( u:pretty() )
+>  u = x:unique()
+>  print( u )
    1   2   3
 ]],
 }
@@ -115,8 +122,8 @@ _example{
     desc = "Using the reorder function",
     code = [[
 >  m = matrix{ {1,2}, {3,4}, {5,6}, {7,8} }
->  r = numextra.matrix.reorder(m, matrix{2,2,1})
->  print( r:pretty() )
+>  r = m:reorder{2,2,1}
+>  print( r )
    3   4
    3   4
    1   2
@@ -128,8 +135,26 @@ _example{
     desc = "Filtering values from a vector with the filter function",
     code = [[
 >  x = matrix{2,1,3,5,7,6,8}
->  f = numextra.matrix.filter(x, function(i) return x[i] % 2 == 0 end)
->  print( f:pretty() )
+>  f = x:filter(function(i) return x[i] % 2 == 0 end)
+>  print( f )
    2   6   8
+]],
+}
+
+_example{
+    name = 'Power',
+    desc = "Usage of the function mpow to perform exponentiation by squaring",
+    code = [[
+>  X = matrix{{1,2},{3,4}}
+>  print( X:mpow(0) )
+   1   0
+   0   1
+>  print( X:mpow(5) )
+   1069   1558
+   2337   3406
+>  X = matrix{{0.3,0.7},{0.6,0.4}}
+>  print( X:mpow(9999999) )
+   0.461538   0.538462
+   0.461538   0.538462
 ]],
 }

@@ -1,12 +1,14 @@
 module(..., package.seeall)
 
-local M = numextra.matrix
+local M = matrix
 local filter   = M.filter
 local reorder  = M.reorder
 local equal    = M.equal
 local unique   = M.unique
 local contains = M.contains
 local bsx      = M.bsx
+local mpow     = M.mpow
+local eye      = matrix.eye
 
 function setup()
     X1    = matrix{1,2,3,4,5,6}
@@ -20,6 +22,9 @@ function setup()
     X8    = matrix{ 1, 2, 3, 2, 1, 3, 2, 1, 2, 1, 2, 3 }
     X9    = matrix{ {3, 0, 0}, {4, 1, 1}, {5, 0, -2} }
     X123  = matrix{1, 2, 3}
+    Xp1   = matrix{ {1,2}, {3,4} }
+    Xp2   = matrix{ {0.4, 0.6}, {0.7, 0.3}}
+    Xp3   = matrix{ {0.53846, 0.46154}, {0.53846, 0.46154} }
 end
 
 function test_equal()
@@ -80,24 +85,31 @@ function test_unique()
 end
 
 function test_bsx()
-    bsx(M.sub, X7, X123)
+    bsx(M.bsub, X7, X123)
     assert_true ( equal(X7, X9 ) )
     assert_false( equal(X7, X7c) )
-    bsx(M.add, X7, X123)
+    bsx(M.badd, X7, X123)
     assert_true( equal(X7, X7c) )
-    bsx(M.mul, X7, 1)
+    bsx(M.bmul, X7, 1)
     assert_true( equal(X7, X7c) )
-    bsx(M.mul, X7, 0.4)
+    bsx(M.bmul, X7, 0.4)
     assert_false( equal(X7, X7c, tol) )
-    bsx(M.div, X7, 0.4)
+    bsx(M.bdiv, X7, 0.4)
     assert_true ( equal(X7, X7c, tol) )
-    bsx(M.mul, X7, X2)
+    bsx(M.bmul, X7, X2)
     assert_false( equal(X7, X7c, tol) )
-    bsx(M.div, X7, X2)
+    bsx(M.bdiv, X7, X2)
     assert_true ( equal(X7, X7c, tol) )
 end
 
 function test_bsx_custom()
     bsx(function(a,b) a:add(b,-1,true) end, X7, X123)
     assert_true( equal(X7, X9) )
+end
+
+function test_mpow()
+    assert_true ( equal(eye(#Xp1), mpow(Xp1, 0), tol         ) ) 
+    assert_true ( equal(Xp1      , mpow(Xp1, 1), tol         ) )
+    assert_false( equal(Xp1      , mpow(Xp1, 2), tol         ) )
+    assert_true ( equal(Xp3      , mpow(Xp2, 9999999), tol*10) )
 end

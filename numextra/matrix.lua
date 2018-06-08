@@ -1,6 +1,4 @@
-local ematrix = {}
-
-function ematrix.filter(X, cond)
+function matrix.filter(X, cond)
     local idx = {}
     local qt  = 0
     local rows, cols = X:shape()
@@ -20,7 +18,7 @@ function ematrix.filter(X, cond)
     return out
 end
 
-function ematrix.bsx(f, A, B)
+function matrix.bsx(f, A, B)
     for i = 1, #A do
         f(A[i], B)
     end
@@ -29,12 +27,12 @@ function ematrix.bsx(f, A, B)
 end
 
 -- functions to use with bsx
-function ematrix.add(A, B) A:add(B,  1, true)    end
-function ematrix.sub(A, B) A:add(B, -1, true)    end
-function ematrix.mul(A, B) A:mul(B, true)        end
-function ematrix.div(A, B) A:div(B, false, true) end
+function matrix.badd(A, B) A:add(B,  1, true)    end
+function matrix.bsub(A, B) A:add(B, -1, true)    end
+function matrix.bmul(A, B) A:mul(B, true)        end
+function matrix.bdiv(A, B) A:div(B, false, true) end
 
-function ematrix.reorder(X, order, col)
+function matrix.reorder(X, order, col)
     if col then X = X:t() end
     local new = matrix(#order, X:size(2) )
     for i = 1, #order do new[i] = X[order[i]] end
@@ -50,7 +48,7 @@ local function equalrow(X, Y, eps)
     return true
 end
 
-function ematrix.equal(X, Y, eps)
+function matrix.equal(X, Y, eps)
     local r1, c1 = X:shape()
     local r2, c2 = Y:shape()
     eps    = eps or 0
@@ -79,7 +77,7 @@ local function split_str(str, pattern)
     return tbl
 end
 
-function ematrix.load_sep(path, sep)
+function matrix.load_sep(path, sep)
     local f       = assert(io.open(path))
     local list    = {}
     local n, m    = 0, 0
@@ -95,7 +93,7 @@ function ematrix.load_sep(path, sep)
     return matrix{list}
 end
 
-function ematrix.contains(X, val, eps)
+function matrix.contains(X, val, eps)
     eps = eps or 0
     
     for i = 1, #X do
@@ -104,7 +102,7 @@ function ematrix.contains(X, val, eps)
     return false
 end
 
-function ematrix.unique(v)
+function matrix.unique(v)
     assert(v:size'#' == 1)
     local set, vals = {}, {}
     local n   = 0
@@ -120,4 +118,16 @@ function ematrix.unique(v)
     return matrix(vals)
 end
 
-return ematrix
+local function mpow(X, a)
+    if a == 0     then return matrix.eye(#X) end
+    if a == 1     then return X end
+    if a % 2 == 0 then return mpow(X*X, a/2) end
+    return X*mpow(X*X, (a-1)/2)
+end
+
+function matrix.mpow(X, a)
+    local r, c = X:shape()
+    assert(r == c)
+    assert(a >= 0)
+    return mpow(X, a)
+end

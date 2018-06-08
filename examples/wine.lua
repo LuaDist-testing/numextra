@@ -5,37 +5,30 @@
     Should be run from the project's root dir.
 --]]
 
--- import the required functions
-local ne = require('numextra')
+-- import libraries
+require('numextra')
 local gp = require('gnuplot')
 
-local load_sep = ne.matrix.load_sep
-local filter   = ne.matrix.filter
-local pca      = ne.stats.pca
-local lda      = ne.stats.lda
-local project  = ne.stats.project
-local zscorem  = ne.stats.zscorem
-
 -- load the dataset
-local data  = load_csv('examples/wine.data')
+local data  = matrix.load_sep('examples/wine.data')
 local y     = data:col(1)
-local X     = zscorem( data{{}, {2,} } )
+local X     = stat.zscorem( data{{}, {2,} } )
 
 -- project with both PCA and LDA
 for _, algo in ipairs{"pca", "lda"} do
     local s, V, mu
     if algo == "pca" then
-        s, V, mu = pca(X)
+        s, V, mu = stat.pca(X)
     else
-        s, V, mu = lda(X, y)
+        s, V, mu = stat.lda(X, y)
     end
     
-    local Xproj = project(X, V{{},{1, 2}}, mu)
+    local Xproj = stat.project(X, V{{},{1, 2}}, mu)
 
     -- plot
-    local c1 = filter(Xproj, function(i) return y[i] == 1 end)
-    local c2 = filter(Xproj, function(i) return y[i] == 2 end)
-    local c3 = filter(Xproj, function(i) return y[i] == 3 end)
+    local c1 = Xproj:filter(function(i) return y[i] == 1 end)
+    local c2 = Xproj:filter(function(i) return y[i] == 2 end)
+    local c3 = Xproj:filter(function(i) return y[i] == 3 end)
 
     gp{
         width = 600   , height = 500,

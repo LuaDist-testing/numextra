@@ -1,296 +1,171 @@
 <html>
 <head>
-    <title>stats</title>
+    <title>num</title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="generator" content="badoc" />
     <link rel="stylesheet" href="badoc.css" type="text/css" />
 </head>
     
 <body>
-<h4><a href="index.html">&lt;&lt; Back to the index</a></h4><h1>Module <code>stats</code></h1><p>Statistical functions</p><h2>Functions</h2>
+<h4><a href="index.html">&lt;&lt; Back to the index</a></h4><h1>Module <code>num</code></h1><p>Numerical analysis functions</p><h2>Functions</h2>
 <table class="index_list">
 <tr>
-<td class="name"><a href="m2.html#t18">corr</a></td>
-<td class="summary">Computes the correlation between vectors X and Y</td>
+<td class="name"><a href="m2.html#t21">fmin</a></td>
+<td class="summary">Minimizes a scalar function, with one or more variables, by using the
+Downhill Simplex method.</td>
 </tr>
 <tr>
-<td class="name"><a href="m2.html#t19">corrm</a></td>
-<td class="summary">Computes the correlation matrix (correlation between each pair of columns of matrix M)</td>
+<td class="name"><a href="m2.html#t22">nlfit</a></td>
+<td class="summary">Levenberg-Marquardt implementation to solve non-linear least squares fitting problems.
+</td>
 </tr>
 <tr>
-<td class="name"><a href="m2.html#t20">cov</a></td>
-<td class="summary">Computes the covariance between vectors X and Y. Normalizes with #X-ddof</td>
-</tr>
-<tr>
-<td class="name"><a href="m2.html#t21">covm</a></td>
-<td class="summary">Computes the covariance matrix (covariance between each pair of columns of matrix M). Normalizes with cols(M)-ddof</td>
-</tr>
-<tr>
-<td class="name"><a href="m2.html#t22">cumsum</a></td>
-<td class="summary">Computes the cumulative sum of vector X</td>
-</tr>
-<tr>
-<td class="name"><a href="m2.html#t23">lda</a></td>
-<td class="summary">Performs a linear discriminant analysis on matrix M (data 'points') and vector y (classes). Each column of matrix M i...</td>
-</tr>
-<tr>
-<td class="name"><a href="m2.html#t24">mean</a></td>
-<td class="summary">Computes the mean of the vector X</td>
-</tr>
-<tr>
-<td class="name"><a href="m2.html#t25">meanm</a></td>
-<td class="summary">Computes the mean of the matrix M</td>
-</tr>
-<tr>
-<td class="name"><a href="m2.html#t26">pca</a></td>
-<td class="summary">Performs a principal component analysis on matrix M, where each column is a dimension and each row is a data 'point'</td>
-</tr>
-<tr>
-<td class="name"><a href="m2.html#t27">project</a></td>
-<td class="summary">Projects the matrix X into the components V using the vector mu to shift the data to its original center</td>
-</tr>
-<tr>
-<td class="name"><a href="m2.html#t28">reconstruct</a></td>
-<td class="summary">Reconstructs a projected matrix back to its original axes</td>
-</tr>
-<tr>
-<td class="name"><a href="m2.html#t29">std</a></td>
-<td class="summary">Computes the standard deviation of vector X. Normalizes with #X-ddof</td>
-</tr>
-<tr>
-<td class="name"><a href="m2.html#t30">var</a></td>
-<td class="summary">Computes the variance of vector X. Normalizes with #X-ddof</td>
-</tr>
-<tr>
-<td class="name"><a href="m2.html#t31">zscore</a></td>
-<td class="summary">Computes the standard score of each value in vector X in respect to itself</td>
-</tr>
-<tr>
-<td class="name"><a href="m2.html#t32">zscorem</a></td>
-<td class="summary">Computes the standard score of each value in each dimension (column) of matrix M in respect to itself</td>
+<td class="name"><a href="m2.html#t23">rk4</a></td>
+<td class="summary">Implementation of the classical Runge-Kutta method for a system of ODEs. Returns
+a function that, when called with a ...</td>
 </tr>
 </table>
 <h2>Examples</h2>
 <table class="index_list">
 <tr>
-<td class="name"><a href="m2.html#t33">Standard deviation</a></td>
-<td class="summary">Demonstrates the computation of the standard deviation of a vector</td>
+<td class="name"><a href="m2.html#t24">Function Minimization</a></td>
+<td class="summary">Minimization of a function by using num.fmin.</td>
+</tr>
+<tr>
+<td class="name"><a href="m2.html#t25">Levenberg-Marquardt</a></td>
+<td class="summary">Non-linear fitting (least squares) by using the Levenberg-Marquardt algorithm</td>
+</tr>
+<tr>
+<td class="name"><a href="m2.html#t26">Runge-Kutta</a></td>
+<td class="summary">Using the Runge-Kutta method to solve a system of ODEs</td>
 </tr>
 </table>
 <h2>Functions</h2>
 <dl class="detail">
 <hr/>
-<dt><a name="t18"></a>corr</dt>
+<dt><a name="t21"></a>fmin</dt>
 <dd>
-Computes the correlation between vectors X and Y
+Minimizes a scalar function, with one or more variables, by using the
+Downhill Simplex method.
 <h3>Parameters</h3>
 <ol>
-<li>X</li>
-<li>Y</li>
+<li>func : function to be minimized, with f(x) signature, where x is a vector will all the independent variables.</li>
+<li>range: defines the initial search space (it is not used as a constraint during the execution of the algorithm). Should be 'table-like' with 'n' rows, where 'n' is the dimension of the search space. range[n][1] should be the lower limit, and range[n][2] the higher limit.</li>
+<li>iters (default: 1e3): maximum number of iterations to be performed.</li>
+<li>eps (default: 1e-6): tolerance for termination.</li>
 </ol><h3>Return</h3>
 <ol>
-<li>Correlation between X and Y (scalar between -1 and 1)</li>
-</ol></dd>
-<hr/>
-<dt><a name="t19"></a>corrm</dt>
-<dd>
-Computes the correlation matrix (correlation between each pair of columns of matrix M)
-<h3>Parameters</h3>
-<ol>
-<li>M</li>
-</ol><h3>Return</h3>
-<ol>
-<li>Covariance matrix</li>
+<li>Solution vector</li>
+<li>Number of iterations performed</li>
 </ol><h3>See</h3>
 <ol>
-<li><a href="m2.html#t18">corr</a></li>
+<li><a href="m2.html#t24">Function Minimization</a></li>
 </ol></dd>
 <hr/>
-<dt><a name="t20"></a>cov</dt>
+<dt><a name="t22"></a>nlfit</dt>
 <dd>
-Computes the covariance between vectors X and Y. Normalizes with #X-ddof
+Levenberg-Marquardt implementation to solve non-linear least squares fitting problems.
+
 <h3>Parameters</h3>
 <ol>
-<li>X</li>
-<li>Y</li>
-<li>ddof (default=1)</li>
+<li>f(a,x): model function, receives the parameters 'a' and independent variables 'x' as input</li>
+<li>a: vector with the initial parameters. It is updated inplace.</li>
+<li>X: Matrix with the independend variables, one row per observation</li>
+<li>y: vector with the dependent data (desired values), one row per observation</li>
+<li>n_iters (default: 100): maximum number of iterations to be performed</li>
+<li>eps (default: 1e-9): tolerance for termination</li>
 </ol><h3>Return</h3>
 <ol>
-<li>Covariance between vectors X and Y</li>
-</ol></dd>
-<hr/>
-<dt><a name="t21"></a>covm</dt>
-<dd>
-Computes the covariance matrix (covariance between each pair of columns of matrix M). Normalizes with cols(M)-ddof
-<h3>Parameters</h3>
-<ol>
-<li>M</li>
-<li>ddof (default=1)</li>
-</ol><h3>Return</h3>
-<ol>
-<li>Covariance matrix</li>
+<li>Fitted parameters</li>
+<li>Mean squared error</li>
+<li>Number of iterations performed</li>
 </ol><h3>See</h3>
 <ol>
-<li><a href="m2.html#t20">cov</a></li>
+<li><a href="m2.html#t25">Levenberg-Marquardt</a></li>
 </ol></dd>
 <hr/>
-<dt><a name="t22"></a>cumsum</dt>
+<dt><a name="t23"></a>rk4</dt>
 <dd>
-Computes the cumulative sum of vector X
+Implementation of the classical Runge-Kutta method for a system of ODEs. Returns
+a function that, when called with a step size, will compute that step returning the new
+values.
 <h3>Parameters</h3>
 <ol>
-<li>X</li>
+<li>odesys: function that computes the derivatives at each step</li>
+<li>order: number of states / equations in the system of ODEs</li>
+<li>values: initial values (vector or Lua table)</li>
+<li>aux (optional): extra arguments that will be passed to function 'odesys'</li>
 </ol><h3>Return</h3>
 <ol>
-<li>Vector of size #X with the cumulative sum of vector X</li>
-</ol></dd>
-<hr/>
-<dt><a name="t23"></a>lda</dt>
-<dd>
-Performs a linear discriminant analysis on matrix M (data 'points') and vector y (classes). Each column of matrix M is a dimension
-<h3>Parameters</h3>
-<ol>
-<li>M</li>
-<li>y</li>
-</ol><h3>Return</h3>
-<ol>
-<li>vector s, matrix V, vector mu, where 's' is the variance contribution of each component, 'V' contains the components per se (one at each column), 'mu' is a vector with the mean of the original data. The vector s and matrix V are already ordered by their variance contributions</li>
-</ol></dd>
-<hr/>
-<dt><a name="t24"></a>mean</dt>
-<dd>
-Computes the mean of the vector X
-<h3>Parameters</h3>
-<ol>
-<li>X</li>
-</ol><h3>Return</h3>
-<ol>
-<li>Mean of the vector X</li>
-</ol></dd>
-<hr/>
-<dt><a name="t25"></a>meanm</dt>
-<dd>
-Computes the mean of the matrix M
-<h3>Parameters</h3>
-<ol>
-<li>M</li>
-</ol><h3>Return</h3>
-<ol>
-<li>vector where the i-th column contains the mean of the i-th column of M</li>
-</ol></dd>
-<hr/>
-<dt><a name="t26"></a>pca</dt>
-<dd>
-Performs a principal component analysis on matrix M, where each column is a dimension and each row is a data 'point'
-<h3>Parameters</h3>
-<ol>
-<li>M</li>
-</ol><h3>Return</h3>
-<ol>
-<li>vector s, matrix V, vector mu, where 's' is the variance contribution of each component, 'V' contains the components per se (one at each column), 'mu' is a vector with the mean of the original data. The vector s and matrix V are already ordered by their variance contributions</li>
+<li>Function that can be used to iteratively solve a system of ODEs</li>
 </ol><h3>See</h3>
 <ol>
-<li><a href="m2.html#t23">lda</a></li>
-<li><a href="m2.html#t32">zscorem</a></li>
-</ol></dd>
-<hr/>
-<dt><a name="t27"></a>project</dt>
-<dd>
-Projects the matrix X into the components V using the vector mu to shift the data to its original center
-<h3>Parameters</h3>
-<ol>
-<li>X</li>
-<li>V</li>
-<li>mu (optional)</li>
-</ol><h3>Return</h3>
-<ol>
-<li>Project matrix</li>
-</ol></dd>
-<hr/>
-<dt><a name="t28"></a>reconstruct</dt>
-<dd>
-Reconstructs a projected matrix back to its original axes
-<h3>Parameters</h3>
-<ol>
-<li>X</li>
-<li>V</li>
-<li>mu</li>
-</ol><h3>Return</h3>
-<ol>
-<li>Reconstructed matrix</li>
-</ol></dd>
-<hr/>
-<dt><a name="t29"></a>std</dt>
-<dd>
-Computes the standard deviation of vector X. Normalizes with #X-ddof
-<h3>Parameters</h3>
-<ol>
-<li>X</li>
-<li>ddof (default=1)</li>
-</ol><h3>Return</h3>
-<ol>
-<li>Standard deviation of vector X</li>
-</ol><h3>See</h3>
-<ol>
-<li><a href="m2.html#t33">Standard deviation</a></li>
-</ol></dd>
-<hr/>
-<dt><a name="t30"></a>var</dt>
-<dd>
-Computes the variance of vector X. Normalizes with #X-ddof
-<h3>Parameters</h3>
-<ol>
-<li>X</li>
-<li>ddof (default=1)</li>
-</ol><h3>Return</h3>
-<ol>
-<li>Variance of vector X</li>
-</ol></dd>
-<hr/>
-<dt><a name="t31"></a>zscore</dt>
-<dd>
-Computes the standard score of each value in vector X in respect to itself
-<h3>Parameters</h3>
-<ol>
-<li>X</li>
-</ol><h3>Return</h3>
-<ol>
-<li>Vector with the standard score (number of standard deviations from the mean) of each value in X</li>
-</ol><h3>See</h3>
-<ol>
-<li><a href="m2.html#t29">std</a></li>
-</ol></dd>
-<hr/>
-<dt><a name="t32"></a>zscorem</dt>
-<dd>
-Computes the standard score of each value in each dimension (column) of matrix M in respect to itself
-<h3>Parameters</h3>
-<ol>
-<li>M</li>
-</ol><h3>Return</h3>
-<ol>
-<li>Matrix where each column has been exchanged with its 'zscore'</li>
-</ol><h3>See</h3>
-<ol>
-<li><a href="m2.html#t31">zscore</a></li>
+<li><a href="m2.html#t26">Runge-Kutta</a></li>
 </ol></dd>
 </dl>
 <h2>Examples</h2>
 <dl class="detail">
 <hr/>
-<dt><a name="t33"></a>Standard deviation</dt>
+<dt><a name="t24"></a>Function Minimization</dt>
 <dd>
-Demonstrates the computation of the standard deviation of a vector
+Minimization of a function by using num.fmin.
 <h3>Code</h3>
 <pre class="example"><!-- Generator: GNU source-highlight 3.1.7
 by Lorenzo Bettini
 http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite --><font color="#990000">&gt;</font> x <font color="#990000">=</font> matrix<font color="#FF0000">{</font><font color="#993399">1</font><font color="#990000">,</font><font color="#993399">2</font><font color="#990000">,</font><font color="#993399">1</font><font color="#990000">,</font><font color="#993399">3</font><font color="#990000">,</font><font color="#993399">2</font><font color="#990000">,</font><font color="#993399">1</font><font color="#FF0000">}</font>
-<font color="#990000">&gt;</font> <b><font color="#000000">print</font></b><font color="#990000">(</font> numextra<font color="#990000">.</font>stats<font color="#990000">.</font><b><font color="#000000">std</font></b><font color="#990000">(</font>x<font color="#990000">)</font> <font color="#990000">)</font> <i><font color="#9A1900">-- default: sample standard deviation</font></i>
-<font color="#993399">0.81649658092773</font>
-<font color="#990000">&gt;</font>  <b><font color="#000000">print</font></b><font color="#990000">(</font> numextra<font color="#990000">.</font>stats<font color="#990000">.</font><b><font color="#000000">std</font></b><font color="#990000">(</font>x<font color="#990000">,</font> <font color="#993399">0</font><font color="#990000">)</font> <font color="#990000">)</font> <i><font color="#9A1900">-- 'whole population' standard deviation</font></i>
-<font color="#993399">0.74535599249993</font>
+http://www.gnu.org/software/src-highlite --><font color="#990000">&gt;</font>  <b><font color="#0000FF">function</font></b> <b><font color="#000000">f</font></b><font color="#990000">(</font>x<font color="#990000">)</font> <b><font color="#0000FF">return</font></b> <font color="#990000">(</font><font color="#993399">1</font><font color="#990000">-</font>x<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">])^</font><font color="#993399">2</font> <font color="#990000">+</font> <font color="#993399">100</font><font color="#990000">*(</font>x<font color="#990000">[</font><font color="#993399">2</font><font color="#990000">]</font> <font color="#990000">-</font> x<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]^</font><font color="#993399">2</font><font color="#990000">)^</font><font color="#993399">2</font> <b><font color="#0000FF">end</font></b>
+<font color="#990000">&gt;</font>  x<font color="#990000">,</font> iters <font color="#990000">=</font> num<font color="#990000">.</font><b><font color="#000000">fmin</font></b><font color="#990000">(</font>f<font color="#990000">,</font> <font color="#FF0000">{</font> <font color="#FF0000">{</font><font color="#990000">-</font><font color="#993399">10</font><font color="#990000">,</font><font color="#993399">10</font><font color="#FF0000">}</font><font color="#990000">,</font> <font color="#FF0000">{</font><font color="#990000">-</font><font color="#993399">10</font><font color="#990000">,</font><font color="#993399">10</font><font color="#FF0000">}</font> <font color="#FF0000">}</font><font color="#990000">)</font>
+<font color="#990000">&gt;</font>  <b><font color="#000000">print</font></b><font color="#990000">(</font>x<font color="#990000">)</font>
+   <font color="#993399">1</font>   <font color="#993399">1</font>
+<font color="#990000">&gt;</font>  <b><font color="#000000">print</font></b><font color="#990000">(</font>iters<font color="#990000">)</font>
+<font color="#993399">66</font>
+</pre></dd>
+<hr/>
+<dt><a name="t25"></a>Levenberg-Marquardt</dt>
+<dd>
+Non-linear fitting (least squares) by using the Levenberg-Marquardt algorithm
+<h3>Code</h3>
+<pre class="example"><!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite --><font color="#990000">&gt;</font>  X <font color="#990000">=</font> matrix<font color="#FF0000">{</font><font color="#993399">1</font><font color="#990000">,</font><font color="#993399">2</font><font color="#990000">,</font><font color="#993399">3</font><font color="#990000">,</font><font color="#993399">4</font><font color="#990000">,</font><font color="#993399">5</font><font color="#FF0000">}</font>
+<font color="#990000">&gt;</font>  y <font color="#990000">=</font> <font color="#993399">2</font><font color="#990000">*</font>X<font color="#990000">^</font><font color="#993399">2</font> <font color="#990000">+</font> <font color="#993399">3</font><font color="#990000">*</font>X <font color="#990000">+</font> <font color="#993399">5</font>
+<font color="#990000">&gt;</font>  poly <font color="#990000">=</font> <b><font color="#0000FF">function</font></b><font color="#990000">(</font>a<font color="#990000">,</font> x<font color="#990000">)</font> <b><font color="#0000FF">return</font></b> a<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]*</font>x<font color="#990000">^</font><font color="#993399">2</font> <font color="#990000">+</font> a<font color="#990000">[</font><font color="#993399">2</font><font color="#990000">]*</font>x <font color="#990000">+</font> a<font color="#990000">[</font><font color="#993399">3</font><font color="#990000">]</font> <b><font color="#0000FF">end</font></b>
+<font color="#990000">&gt;</font>  a<font color="#990000">,</font> mse<font color="#990000">,</font> iters <font color="#990000">=</font> num<font color="#990000">.</font><b><font color="#000000">nlfit</font></b><font color="#990000">(</font>poly<font color="#990000">,</font> matrix<font color="#FF0000">{</font><font color="#993399">0.1</font><font color="#990000">,</font> <font color="#993399">0.1</font><font color="#990000">,</font> <font color="#993399">0.1</font><font color="#FF0000">}</font><font color="#990000">,</font> X<font color="#990000">,</font> y<font color="#990000">)</font>
+<font color="#990000">&gt;</font>  <b><font color="#000000">print</font></b><font color="#990000">(</font>mse<font color="#990000">)</font>
+<font color="#993399">1.8508973999441e-23</font>
+<font color="#990000">&gt;</font>  <b><font color="#000000">print</font></b><font color="#990000">(</font>a<font color="#990000">)</font>
+   <font color="#993399">2</font>   <font color="#993399">3</font>   <font color="#993399">5</font>
+</pre></dd>
+<hr/>
+<dt><a name="t26"></a>Runge-Kutta</dt>
+<dd>
+Using the Runge-Kutta method to solve a system of ODEs
+<h3>Code</h3>
+<pre class="example"><!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite --><i><font color="#9A1900">-- not in console mode; output not shown</font></i>
+<b><font color="#0000FF">function</font></b> <b><font color="#000000">myode</font></b><font color="#990000">(</font>y<font color="#990000">)</font>
+    <b><font color="#0000FF">local</font></b> accel <font color="#990000">=</font> y<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font>
+    <b><font color="#0000FF">local</font></b> speed <font color="#990000">=</font> y<font color="#990000">[</font><font color="#993399">2</font><font color="#990000">]</font>
+    
+    y<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">0</font>     <i><font color="#9A1900">-- constant acceleration</font></i>
+    y<font color="#990000">[</font><font color="#993399">2</font><font color="#990000">]</font> <font color="#990000">=</font> accel
+    y<font color="#990000">[</font><font color="#993399">3</font><font color="#990000">]</font> <font color="#990000">=</font> speed
+<b><font color="#0000FF">end</font></b>
+
+<i><font color="#9A1900">-- accel of 0.2m/s², initial speed of 1m/s, initial position of 10 m</font></i>
+sim     <font color="#990000">=</font> num<font color="#990000">.</font><b><font color="#000000">rk4</font></b><font color="#990000">(</font>myode<font color="#990000">,</font> <font color="#993399">3</font><font color="#990000">,</font> <font color="#FF0000">{</font><font color="#993399">0.2</font><font color="#990000">,</font> <font color="#993399">1</font><font color="#990000">,</font> <font color="#993399">10</font><font color="#FF0000">}</font><font color="#990000">)</font>
+step    <font color="#990000">=</font> <font color="#993399">1e-1</font>   <i><font color="#9A1900">-- step of 0.1s</font></i>
+ttime   <font color="#990000">=</font> <font color="#993399">10</font>     <i><font color="#9A1900">-- simulate for 10 s</font></i>
+n_steps <font color="#990000">=</font> ttime <font color="#990000">/</font> step
+ 
+<b><font color="#0000FF">for</font></b> i <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">,</font> n_steps <b><font color="#0000FF">do</font></b>
+    <b><font color="#0000FF">local</font></b> v <font color="#990000">=</font> <b><font color="#000000">sim</font></b><font color="#990000">(</font>step<font color="#990000">)</font>
+    <b><font color="#000000">print</font></b><font color="#990000">(</font>i<font color="#990000">*</font>step<font color="#990000">,</font> v<font color="#990000">[</font><font color="#993399">3</font><font color="#990000">])</font>
+<b><font color="#0000FF">end</font></b>
 </pre></dd>
 </dl>
-    <p class="footer">Generated by <code>badoc</code> in Sun Jun 23 21:58:36 2013</p>
+    <p class="footer">Generated by <code>badoc</code> in Mon Aug  5 16:42:32 2013</p>
 </body></html>

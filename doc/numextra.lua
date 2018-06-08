@@ -1,6 +1,6 @@
 _project{
-    name = 'Numeric Lua - Extra',
-    desc = "A collection of (unofficial) complementary functions for Numeric Lua.",
+    name = 'Numeric Extra',
+    desc = "A collection of complementary functions for Numeric Lua.",
     links = {
         Lua    = 'http://www.lua.org',
         numlua = "https://github.com/carvalho/numlua",
@@ -8,5 +8,6 @@ _project{
     },
 }
 
-require('doc.stats')
+require('doc.stat')
 require('doc.matrix')
+require('doc.num')

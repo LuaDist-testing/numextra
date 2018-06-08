@@ -2,20 +2,19 @@
     Adapted from http://www.bytefish.de/blog/pca_lda_with_gnu_octave/
 --]]
 
-local ne = require('numextra')
 local gp = require('gnuplot')
+require('numextra')
 
-local filter                = ne.matrix.filter
-local meanm, pca            = ne.stats.meanm  , ne.stats.pca
-local project, reconstruct  = ne.stats.project, ne.stats.reconstruct
+local meanm, pca            = stat.meanm  , stat.pca
+local project, reconstruct  = stat.project, stat.reconstruct
 
 -- data
 local X = matrix{ {2, 3}, {3, 4}, {4, 5}, {5, 6}, {5, 7}, {2, 1}, {3, 2}, {4, 2}, {4, 3}, {6, 4}, {7, 6}}
 local c = matrix{ 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2 }
 
 -- X per class
-local c1 = filter(X, function(i) return c[i] == 1 end)
-local c2 = filter(X, function(i) return c[i] == 2 end)
+local c1 = X:filter(function(i) return c[i] == 1 end)
+local c2 = X:filter(function(i) return c[i] == 2 end)
 
 -- initial plot
 gp{
@@ -76,8 +75,8 @@ for comp = 1, 2 do
     local X1 = reconstruct( project(X, W, mu), W, mu)
 
     -- X per class
-    local p1 = filter(X1, function(i) return c[i] == 1 end)
-    local p2 = filter(X1, function(i) return c[i] == 2 end)
+    local p1 = X1:filter(function(i) return c[i] == 1 end)
+    local p2 = X1:filter(function(i) return c[i] == 2 end)
 
     -- plotting with the projection
     gp{

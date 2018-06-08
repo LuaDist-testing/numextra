@@ -1,17 +1,14 @@
-local ematrix  = require('numextra.matrix')
-local reorder  = ematrix.reorder
-local unique   = ematrix.unique
-local filter   = ematrix.filter
-local bsx      = ematrix.bsx
-local sub, add = ematrix.sub, ematrix.add
+local reorder  = matrix.reorder
+local unique   = matrix.unique
+local filter   = matrix.filter
+local bsx      = matrix.bsx
+local sub, add = matrix.bsub, matrix.badd
 
-local stats = {}
-
-function stats.mean(X)
+function stat.mean(X)
     return X:sum() / #X
 end
 
-function stats.cumsum(X)
+function stat.cumsum(X)
     local acc  = 0
     local Xout = matrix(#X)
     
@@ -23,20 +20,20 @@ function stats.cumsum(X)
     return Xout
 end
 
-function stats.meanm(M)
+function stat.meanm(M)
     local cols = M:size(2)
     local Mout = matrix.new(cols)
     
     for c = 1, cols do
-        Mout[c] = stats.mean(M:col(c))
+        Mout[c] = stat.mean(M:col(c))
     end
     
     return Mout
 end
 
-function stats.cov(X, Y, ddof)
+function stat.cov(X, Y, ddof)
     assert(#X == #Y, "'x' and 'y' must have the same size")
-    local mx, my = stats.mean(X), stats.mean(Y)
+    local mx, my = stat.mean(X), stat.mean(Y)
     local acc    = 0
     
     for i = 1, #X do
@@ -46,42 +43,42 @@ function stats.cov(X, Y, ddof)
     return acc / (#X - (ddof or 1))
 end
 
-function stats.var(X, ddof)
-    return stats.cov(X, X, ddof)
+function stat.var(X, ddof)
+    return stat.cov(X, X, ddof)
 end
 
-function stats.std(X, ddof)
-    return math.sqrt( stats.var(X, ddof) )
+function stat.std(X, ddof)
+    return math.sqrt( stat.var(X, ddof) )
 end
 
-function stats.corr(X, Y)
-    return stats.cov(X,Y) / ( stats.std(X) * stats.std(Y))
+function stat.corr(X, Y)
+    return stat.cov(X,Y) / ( stat.std(X) * stat.std(Y))
 end
 
-function stats.covm(M, ddof)
+function stat.covm(M, ddof)
     local dims = M:size(2)
     return matrix.new(dims, dims):apply(function(i,j)
-        return stats.cov(M:col(i), M:col(j), ddof)
+        return stat.cov(M:col(i), M:col(j), ddof)
     end)
 end
 
-function stats.corrm(M)
+function stat.corrm(M)
     local dims = M:size(2)
     return matrix.new(dims, dims):apply(function(i,j)
-        return stats.corr(M:col(i), M:col(j))
+        return stat.corr(M:col(i), M:col(j))
     end)
 end
 
-function stats.zscore(X)
-    return (X - stats.mean(X)):div( stats.std(X), false, true )
+function stat.zscore(X)
+    return (X - stat.mean(X)):div( stat.std(X), false, true )
 end
 
-function stats.zscorem(M)
+function stat.zscorem(M)
     local rows, cols = M:shape()
     local O = matrix.new(rows, cols)
     
     for c = 1, cols do
-        O:col(c):set( stats.zscore(M:col(c)) )
+        O:col(c):set( stat.zscore(M:col(c)) )
     end
     
     return O
@@ -94,24 +91,24 @@ local function eig_reorder(M)
     return s, V
 end
 
-function stats.pca(M)
-    local mu   = stats.meanm(M)
+function stat.pca(M)
+    local mu   = stat.meanm(M)
     M = bsx( sub, M:copy(), mu )
-    local s, V = eig_reorder( stats.covm(M) )
+    local s, V = eig_reorder( stat.covm(M) )
     return s, V, mu
 end
 
-function stats.lda(X, y)
+function stat.lda(X, y)
     local dims   = X:size(2)
     local labels = unique(y)
     local C      = #labels
     local Sw     = matrix.zeros(dims, dims)
     local Sb     = matrix.zeros(dims, dims)
-    local mu     = stats.meanm(X)
+    local mu     = stat.meanm(X)
     
     for i = 1, C do
         local Xi   = filter(X, function(p) return y[p] == labels[i] end)
-        local mu_i = stats.meanm(Xi)
+        local mu_i = stat.meanm(Xi)
         bsx( sub, Xi, mu_i )
         add( Sw, Xi:t() * Xi() )
         sub( mu_i, mu )
@@ -122,7 +119,7 @@ function stats.lda(X, y)
     return s, V, mu
 end
 
-function stats.project(X, V, mu)
+function stat.project(X, V, mu)
     if mu then
         X = bsx(sub, X:copy(), mu)
     end
@@ -130,7 +127,7 @@ function stats.project(X, V, mu)
     return X * V
 end
 
-function stats.reconstruct(X, V, mu)
+function stat.reconstruct(X, V, mu)
     local out = X*V:t()
     
     if mu then
@@ -139,5 +136,3 @@ function stats.reconstruct(X, V, mu)
     
     return out
 end
-
-return stats
